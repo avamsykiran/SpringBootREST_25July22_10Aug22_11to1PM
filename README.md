@@ -63,4 +63,16 @@ Spring Boot
 
     @Order
 
-    
+    Spring Data JPA
+    -----------------------------------------------------------------------------------------------
+
+        is a spring framework module that offers dynamic automatic implementation for a jpa based
+        repository
+
+        CrudRepository
+            |- JpaRepository
+                    Optional<E> findById(T id)          
+                    List<E> findAll()
+                    E save(E e)
+                    void deleteById(T id)
+                    boolean existsById(T id)
