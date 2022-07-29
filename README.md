@@ -118,7 +118,6 @@ Spring Boot
             SimpleUrlHandler will match the url and http method of the incoming request with the
             urls and method configed on the actions and the related action is picked if one available.
 
-
         When a controller after processing the req-data, it is sending a viewName, how 
         the front-controller will picka related view of the viewName from the VIEWS?
 
