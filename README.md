@@ -76,3 +76,63 @@ Spring Boot
                     E save(E e)
                     void deleteById(T id)
                     boolean existsById(T id)
+
+    Spring Web
+    -----------------------------------------------------------------------------------------------------------
+
+        is another spring framework module.
+
+        And this module offers support for Web MVC applications and REST api applications.
+
+        Web MVC - Single Front Controller Design Pattern
+
+                       Repo <-Entity-> Service <-Model-> Controller
+                       Repo <-Entity-> Service <-Model-> Controller 
+        Database <---> Repo <-Entity-> Service <-Model-> Controller   <-Model-------------- FrontController <---REQ-- Client
+                       Repo <-Entity-> Service <-Model-> Controller   -ViewName/ Model+ViewName---> | 
+                       Repo <-Entity-> Service <-Model-> Controller                                 |        
+                                                                                                  (model)
+                                                                                                    |
+                                                                                                    ↓
+                                                                                                   VIEWS --------RESP----> 
+
+        FrontController?        DispatcherServlet from spring web module.
+
+        Controller?             is a POJO marked with @Controller.
+                                The controller offers methods that msut be invoked when ever a req is to be processed.
+                                These methods are called actions.
+                                These actions are expected to return either a viewName as String or a viewName + models as
+                                ModelAndView Object.
+
+        How can a front-controller know which underlying controller should be invoked for a 
+        incoming req?
+
+            UrlHandler is a spring web interface using which the fornt-controller tries to
+            figure out the related conteroller.action for a incoming request.
+
+            UrlHandler's implementation class SimpleUrlHandler is by default cofngiured by spring bott for this purpose.
+
+            @RequestMapping(value="url",method=RequestMethod.GET|POST|...etc)
+                this annotation is applied on the action methods.
+
+            SimpleUrlHandler will match the url and http method of the incoming request with the
+            urls and method configed on the actions and the related action is picked if one available.
+
+
+        When a controller after processing the req-data, it is sending a viewName, how 
+        the front-controller will picka related view of the viewName from the VIEWS?
+
+            ViewResolver is a spring web interface the front-controller uses to
+            figureout the actual view for a given viewName.
+
+            XmlResourceViewResolver,MessageBundleReourceViewResolver,InternalResourceViewResolver are the different
+            implementations of ViewResolver interface.
+
+            Spring Boot configs InternalResourceViewResolver as the default option.
+
+            InternalResourceViewResolver has two fields
+                prefix
+                suffix
+
+            for a givne viewName the actual view is 'prefix + viewName + suffix'.
+
