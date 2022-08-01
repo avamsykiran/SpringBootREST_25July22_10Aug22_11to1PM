@@ -95,6 +95,7 @@ Spring Boot
                                                                                                     |
                                                                                                     ↓
                                                                                                    VIEWS --------RESP----> 
+                                                                                             
 
         FrontController?        DispatcherServlet from spring web module.
 
@@ -133,5 +134,14 @@ Spring Boot
                 prefix
                 suffix
 
-            for a givne viewName the actual view is 'prefix + viewName + suffix'.
+            for a given viewName the actual view is 'prefix + viewName + suffix'.
 
+    REST api - Single Front Controller Design Pattern
+
+                       Repo <-Entity-> Service <-Model-> Controller
+                       Repo <-Entity-> Service <-Model-> Controller 
+        Database <---> Repo <-Entity-> Service <-Model-> Controller   <-Model-------------- FrontController <---REQ-- Client
+                       Repo <-Entity-> Service <-Model-> Controller   -ViewName/ Model+ViewName---> | 
+                       Repo <-Entity-> Service <-Model-> Controller                                 |        
+                                                                                                  (model) --------RESP----> 
+      

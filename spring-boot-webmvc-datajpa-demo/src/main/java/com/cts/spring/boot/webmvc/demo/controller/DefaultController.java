@@ -17,6 +17,6 @@ public class DefaultController {
 	
 	@RequestMapping("/header")
 	public ModelAndView headerAction() {
-		return new ModelAndView("header-segment","webTitle","Spring Boot WebMVC Demo");
+		return new ModelAndView("header-segment","webTitle","LibraryPortal");
 	}
 }
