@@ -19,6 +19,7 @@
 						<th>Title</th>
 						<th>Price</th>
 						<th>Published Date</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,6 +29,9 @@
 							<td style="text-align:left">${b.title }</td>
 							<td style="text-align:right">${b.price }</td>
 							<td style="text-align:center">${b.publishDate }</td>
+							<td style="text-align:center">
+								<a href="/books/delete?bc=${b.bookCode }">delete</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

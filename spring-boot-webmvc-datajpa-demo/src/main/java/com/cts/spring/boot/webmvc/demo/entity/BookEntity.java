@@ -7,6 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name="books")
@@ -15,8 +24,19 @@ public class BookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long bookCode;
+	
+	@NotBlank(message = "Title can not be blank")
+	@Size(min=5,max=50,message = "Title is expected to atleast 5 chars and atmax 50 chars in length")
 	private String title;
+	
+	@NotNull(message = "Price is a mandatory field")
+	@Min(value=0,message = "Price can not be negative")
+	@Max(value=90000,message ="Price can not be more than 90000")
 	private Double price;
+	
+	@NotNull(message = "Publish Date is a mandatory field")
+	@PastOrPresent(message="Publish Date can not of future")
+	@DateTimeFormat(iso=ISO.DATE)
 	private LocalDate publishDate;
 	
 	public BookEntity() {
