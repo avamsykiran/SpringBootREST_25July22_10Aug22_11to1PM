@@ -1,7 +1,14 @@
 package com.cts.spring.boot.webmvc.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+
+import com.cts.spring.boot.webmvc.demo.entity.BookEntity;
 
 public class ServletInitializer extends SpringBootServletInitializer {
 

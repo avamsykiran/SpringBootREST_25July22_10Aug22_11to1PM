@@ -86,8 +86,8 @@ Spring Boot
 
         Web MVC - Single Front Controller Design Pattern
 
-                       Repo <-Entity-> Service <-Model-> Controller
-                       Repo <-Entity-> Service <-Model-> Controller 
+                       Repo <-Entity-> Service <-Model-> Controller                                                   EndUser
+                       Repo <-Entity-> Service <-Model-> Controller                                                     ↑4
         Database <---> Repo <-Entity-> Service <-Model-> Controller   <-Model-------------- FrontController <---REQ-- Client
                        Repo <-Entity-> Service <-Model-> Controller   -ViewName/ Model+ViewName---> | 
                        Repo <-Entity-> Service <-Model-> Controller                                 |        
@@ -139,8 +139,8 @@ Spring Boot
     REST api - Single Front Controller Design Pattern
 
                        Repo <-Entity-> Service <-Model-> Controller
-                       Repo <-Entity-> Service <-Model-> Controller 
-        Database <---> Repo <-Entity-> Service <-Model-> Controller   <-Model-------------- FrontController <---REQ-- Client
+                       Repo <-Entity-> Service <-Model-> Controller                                                         
+        Database <---> Repo <-Entity-> Service <-Model-> Controller   <-Model-------------- FrontController <---REQ-- Another APP
                        Repo <-Entity-> Service <-Model-> Controller   -ViewName/ Model+ViewName---> | 
                        Repo <-Entity-> Service <-Model-> Controller                                 |        
                                                                                                   (model) --------RESP----> 

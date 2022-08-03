@@ -4,5 +4,6 @@
 	  <a href="/home" style="display:inline-block;padding:5px;margin:2px;">Home</a>
 	  <a href="/books/list" style="display:inline-block;padding:5px;margin:2px;">Books List</a>
 	  <a href="/books/add" style="display:inline-block;padding:5px;margin:2px;">New Book</a>
+	  <a href="/cart/show" style="display:inline-block;padding:5px;margin:2px;">Cart [${cartCount }]</a>
 	</nav>
 </header>

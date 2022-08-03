@@ -8,8 +8,8 @@
 	<h3>Books List</h3>
 	
 	<c:choose>
-		<c:when test="${books==null || books.isEmpty() }">
-			<p><strong>No Records To Show</strong>
+		<c:when test="${cart==null || cart.isEmpty() }">
+			<p><strong>Your Shopping Cart is empty</strong>
 		</c:when>
 		<c:otherwise>
 			<table style="width:70%;margin:auto;border:1px solid #000000;">
@@ -23,16 +23,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="b" items="${books }">
+					<c:forEach var="b" items="${cart }">
 						<tr>
 							<td style="text-align:right">${b.bookCode }</td>
 							<td style="text-align:left">${b.title }</td>
 							<td style="text-align:right">${b.price }</td>
 							<td style="text-align:center">${b.publishDate }</td>
 							<td style="text-align:center">
-								<a href="/books/delete?bc=${b.bookCode }">delete</a> <span>|</span>
-								<a href="/books/edit?bc=${b.bookCode }">delete</a> <span>|</span>
-								<a href="/books/select?bc=${b.bookCode }">Add to cart</a> 
+								<a href="/cart/remove?bc=${b.bookCode }">remove from cart</a>  
 							</td>
 						</tr>
 					</c:forEach>
