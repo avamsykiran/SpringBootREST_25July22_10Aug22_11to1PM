@@ -77,6 +77,18 @@ Spring Boot
                     void deleteById(T id)
                     boolean existsById(T id)
 
+        public interface EmployeeRepo extends JpaRepository<Employee,Long>{
+            Optional<Employee> findByMobileNumber(String mobileNumber);
+            List<Employee> findAllByJob(String job);
+            boolean existsByMail(String mail);
+
+            @Query("SELECT e FROM Employee e INNER JOIN Department d WHERE d.departmentName=:dname")
+            List<Employee> getAllByDepatmentName(String dname);
+
+            @Query("SELECT e FROM Employee e WHERE e.joinDate BETWEEN :start AND :end")
+            List<Employee> getAllJoinedInThePeriod(LocalDate start,LocalDate end);
+        }
+
     Spring Web
     -----------------------------------------------------------------------------------------------------------
 
@@ -136,6 +148,50 @@ Spring Boot
 
             for a given viewName the actual view is 'prefix + viewName + suffix'.
 
+    Web Services:
+                                                                   AndriodApp 
+        Repo <-Entity-> Service <-Model-> Controller    <------->  AngularApp
+                                                                   ReactApp
+
+        SOAP Web Services           SOAP protocol is used
+                                    XML is the media of data-exchagne.
+                                    no possibility of versatile data like binary/pdf/images....etc.,
+
+        REST Web Services           HTTP protocol is used
+                                    XML/json/images/text/.binary and any other media for data-exchange.
+
+            1. Single end-point url for almost all CRUD operatiosn of a resource.
+
+                Employee    as a resource
+
+                    Create      /emps       POST
+                    Update      /emps       PUT / PATCH
+                    Delete      /emps       DELETE
+                    Retrive     /emps       GET         a list of records
+                                /emps/101   GET         a record with id 101
+                                
+
+            2. Response with a HTTP Status code.
+
+                1xx     indicate that a request is recived and is under process, please wait....
+                3xx     indicate that a response is beign redirected, please wait...
+
+                2xx     indicate the successful execution of a request
+                        if GET is successful,       200-OK is responsed
+                        if POST is successful,      201-CREATED is responded
+                        if PUT is successful,       202-ACCEPTED is responded.
+                        if DELETE is successful,    203-NO CONTENT is responded.
+
+                4xx     indicate the failure of a request process due to client side error
+                        400     BAD REQUEST      a put/post fials because of 
+                                                 invalid data, or duplicate id
+
+                        404     NOT FOUND        when a get or delete fails 
+
+                5xx     indicate the failure of a request process due to server side error
+                        500     INTERNAL SERVER ERROR   when an unhandled exception occurs.
+         
+
     REST api - Single Front Controller Design Pattern
 
                        Repo <-Entity-> Service <-Model-> Controller
@@ -144,4 +200,23 @@ Spring Boot
                        Repo <-Entity-> Service <-Model-> Controller   -ViewName/ Model+ViewName---> | 
                        Repo <-Entity-> Service <-Model-> Controller                                 |        
                                                                                                   (model) --------RESP----> 
-      
+
+            @RestController =   @Controller + @ResponseBody (data is the reposne body we have no view)
+
+            @GetMApping
+            @PutMapping
+            @PostMApping
+            @DeleteMapping
+
+            @PathVariable
+
+            ResponseEntity  resp = new ResponseEntity(empService.getAll(),HttpStatus.OK);
+
+            ResponseEntity  resp = ResponseEntity.ok(empService.getAll());
+            
+            Employe emp = empService.getById(empId);
+            return emp==null? ResponseEntity.notFound().build() : ResponseEntity.ok(emp);
+
+
+
+            
