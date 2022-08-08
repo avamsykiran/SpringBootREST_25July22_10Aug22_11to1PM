@@ -210,13 +210,16 @@ Spring Boot
 
             @PathVariable
 
-            ResponseEntity  resp = new ResponseEntity(empService.getAll(),HttpStatus.OK);
+            ResponseEntity<List<Employee>>  resp = new ResponseEntity<>(empService.getAll(),HttpStatus.OK);
 
-            ResponseEntity  resp = ResponseEntity.ok(empService.getAll());
+            ResponseEntity<List<Employee>>  resp = ResponseEntity.ok(empService.getAll());
             
             Employe emp = empService.getById(empId);
             return emp==null? ResponseEntity.notFound().build() : ResponseEntity.ok(emp);
 
-
+            Rest Clients
+                Postman
+                Insomnia 
+                    ...etc.,
 
             
