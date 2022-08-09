@@ -30,4 +30,20 @@ public class GlobalExceptionsAdvice {
 		logger.error(exp.getMessage(), exp);
 		return new ResponseEntity<String>(exp.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	
+	/*@ExceptionHandler({HttpMessageNotReadableException.class,OperationFailedException.class,Exception.class})
+	public ResponseEntity<String> handleBadReqeustExceptions(Throwable exp){
+		logger.error(exp.getMessage(), exp);
+		
+		HttpStatus status = null;
+		
+		if(exp instanceof HttpMessageNotReadableException || exp instanceof OperationFailedException) {
+			status = HttpStatus.BAD_REQUEST;
+		}else {
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		
+		return new ResponseEntity<String>(exp.getMessage(), status);
+	}*/
 }

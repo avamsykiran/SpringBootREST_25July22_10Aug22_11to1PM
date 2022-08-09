@@ -11,4 +11,5 @@ public interface BookService {
 	void delete(Long bookCode);
 	BookEntity add(BookEntity book) throws OperationFailedException;
 	BookEntity replace(BookEntity book)throws OperationFailedException;
+	List<BookEntity> getAllThatHasTitle(String titleStub);
 }

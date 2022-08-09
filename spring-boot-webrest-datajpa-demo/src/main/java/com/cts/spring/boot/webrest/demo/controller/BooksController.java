@@ -34,10 +34,15 @@ public class BooksController {
 		return new ResponseEntity<>(bookService.getAll(),HttpStatus.OK);
 	}
 	
-	@GetMapping("/{bc}")
+	@GetMapping("/{bc:[0-9]{1,5}}")
 	public ResponseEntity<BookEntity> getBookAction(@PathVariable("bc") long bookCode) {
 		BookEntity b = bookService.getById(bookCode);
 		return b==null?new ResponseEntity<>(HttpStatus.NOT_FOUND) : new ResponseEntity<BookEntity>(b, HttpStatus.OK);
+	}
+	
+	@GetMapping("/{ts:\\D+}")
+	public ResponseEntity<List<BookEntity>> getAllBookByTitleStubAction(@PathVariable("ts") String titleStub) {
+		return new ResponseEntity<>(bookService.getAllThatHasTitle(titleStub),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{bc}")

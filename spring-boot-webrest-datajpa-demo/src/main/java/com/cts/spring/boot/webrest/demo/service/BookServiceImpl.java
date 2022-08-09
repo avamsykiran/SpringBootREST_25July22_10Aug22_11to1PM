@@ -57,4 +57,9 @@ public class BookServiceImpl implements BookService {
 		return bookRepo.save(book);
 	}
 
+	@Override
+	public List<BookEntity> getAllThatHasTitle(String titleStub) {
+		return bookRepo.getAllThatHasTitle(titleStub);
+	}
+
 }
